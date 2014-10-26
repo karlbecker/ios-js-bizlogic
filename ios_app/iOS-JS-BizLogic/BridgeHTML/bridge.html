@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>Product_Name JS Bridge</title>
+    <script type="text/javascript">
+
+        if(window.BridgeCallback) {
+            //android
+            window.Bridge = new base.Bridge(window.BridgeCallback);
+            window.Bridge.start();
+        } else {
+            //iOS
+            function connectWebViewJavascriptBridge(callback) {
+                if (window.WebViewJavascriptBridge) {
+                    callback(WebViewJavascriptBridge)
+                } else {
+                    document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                        callback(WebViewJavascriptBridge)
+                    }, false)
+                }
+            }
+
+
+            connectWebViewJavascriptBridge(function(bridge) {
+                var myBridge;
+
+                bridge.init(function(data, callback) {
+					//choosing not to do anything in this so we have better control over when to truly initialize the bridge
+                    console.log("generic data received from app")
+                    callback();
+                });
+
+                bridge.registerHandler("initialize", function(args, callback) {
+                    var someDataSentFromTheNativeAppCode = "";
+alert('The JS bridge has been started - and this alert was generated from javascript code!');
+					
+                    myBridge = new base.Bridge(new base.IOSBridgeCallback(someDataSentFromTheNativeAppCode, callback));
+                    myBridge.start();
+                });
+
+                bridge.registerHandler("exec", function(data, callback) {
+                    myBridge.execImmediate(data.className, data.methodName, data.args, function(err, result) {
+                        callback([err, result]);
+                    })
+                });
+
+            });
+        }
+
+
+
+
+
+    </script>
+</head>
+<body></body>
+</html>
