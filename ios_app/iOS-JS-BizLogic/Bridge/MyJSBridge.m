@@ -13,14 +13,13 @@
 
 @implementation MyJSBridge
 
-- (id)init {
+- (id)initWithHTMLFile:(NSString *)bridgeFilePath {
 	if(self = [super init]) {
 		self.proxyInstances = [NSPointerArray weakObjectsPointerArray];
 		
 		self.webview = [[UIWebView alloc] init];
 		
-		NSString *bridgeFilePath = [[NSBundle mainBundle] pathForResource:@"bridge" ofType:@"html"];
-		if( bridgeFilePath == nil ) {
+		if( !bridgeFilePath ) {
 			return self;  //bridge file does not exist, so just get out of here!
 		}
 		

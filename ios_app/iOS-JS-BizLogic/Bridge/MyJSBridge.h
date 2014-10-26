@@ -15,6 +15,8 @@
 @property(nonatomic, strong) WebViewJavascriptBridge *bridge;
 @property(nonatomic, strong) NSPointerArray *proxyInstances;
 
+- (id)initWithHTMLFile:(NSString *)bridgeFilePath;
+
 - (id)createProxyForController:(NSString *)controllerName;
 - (void)execJavascriptMethodInBackground:(MyJSBridgeMethodInvocation *)invocation;
 

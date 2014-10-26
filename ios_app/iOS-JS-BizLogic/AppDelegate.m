@@ -52,7 +52,8 @@
 
 #pragma mark - JSBridge Methods
 - (void)initializeBridge {
-	self.bridge = [[MyJSBridge alloc] init];
+	NSString *bridgeFilePath = [[NSBundle mainBundle] pathForResource:@"bridge" ofType:@"html"];
+	self.bridge = [[MyJSBridge alloc] initWithHTMLFile:bridgeFilePath];
 }
 
 - (MyObjectsController *)objectsController {
