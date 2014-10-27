@@ -1,0 +1,36 @@
+{
+  "name": "bz-core",
+  "version": "0.0.0",
+  "description": "bz-core ========",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "supervisor -w server.js server.js",
+    "compile-ts": "cd ..  && bin/compile.sh",
+    "compile-test-ts": "cd ..  && bin/compile.sh --test",
+    "test": "node runTests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thirdiron/browzine_core.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/thirdiron/browzine_core/issues"
+  },
+  "dependencies": {
+    "ejs": "^1.0.0",
+    "express": "~4.0.0-rc2",
+    "mocha-phantomjs": "^3.4.1",
+    "phantomjs": "^1.9.7-8",
+    "q": "~1.0.0",
+    "supervisor": "~0.5.7",
+    "watch": "^0.10.0"
+  },
+  "devDependencies": {
+    "typescript": "^1.0.1"
+  }
+}
