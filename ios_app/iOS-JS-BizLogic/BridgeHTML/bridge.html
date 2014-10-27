@@ -30,6 +30,7 @@
                 });
 
                 bridge.registerHandler("initialize", function(args, callback) {
+					console.log("generic data received from app")
                     var someDataSentFromTheNativeAppCode = "";
 alert('The JS bridge has been started - and this alert was generated from javascript code!');
 					

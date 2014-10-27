@@ -6,13 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebViewJavascriptBridge.h"
+#import <WebViewJavascriptBridge/WKWebViewJavascriptBridge.h>
 #import "MyJSBridgeMethodInvocation.h"
 
 @interface MyJSBridge : NSObject
 
-@property(nonatomic, strong) UIWebView *webview;
-@property(nonatomic, strong) WebViewJavascriptBridge *bridge;
+@property(nonatomic, strong) WKWebView *webview;
+@property(nonatomic, strong) WKWebViewJavascriptBridge *bridge;
 @property(nonatomic, strong) NSPointerArray *proxyInstances;
 
 - (id)initWithHTMLFile:(NSString *)bridgeFilePath;

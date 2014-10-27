@@ -17,7 +17,7 @@
 	if(self = [super init]) {
 		self.proxyInstances = [NSPointerArray weakObjectsPointerArray];
 		
-		self.webview = [[UIWebView alloc] init];
+		self.webview = [[WKWebView alloc] init];
 		
 		if( !bridgeFilePath ) {
 			return self;  //bridge file does not exist, so just get out of here!
@@ -25,8 +25,14 @@
 		
 		[self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:bridgeFilePath]]];
 		
+		[WKWebViewJavascriptBridge enableLogging];
+		
 		//initialize the WVJB bridge
-		self.bridge = [WebViewJavascriptBridge bridgeForWebView:self.webview handler:nil];
+		self.bridge = [WKWebViewJavascriptBridge bridgeForWebView:self.webview handler:^(id data, WVJBResponseCallback responseCallback) {
+			NSLog(@"ObjC received message from JS: %@", data);
+			responseCallback(@"Response for message from ObjC");
+		}];
+		
 		
 		//add callback to fetch website data
 		[self.bridge registerHandler:@"fetchContent" handler:^(NSDictionary *options, WVJBResponseCallback responseCallback) {

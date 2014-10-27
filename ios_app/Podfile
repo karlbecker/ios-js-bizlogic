@@ -4,7 +4,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target "iOS-JS-BizLogic" do
-	pod 'WebViewJavascriptBridge', '~> 4.1.0'
+	pod 'WebViewJavascriptBridge', :git => 'git@github.com:lokimeyburg/WebViewJavascriptBridge.git', :branch => 'wkwebview-support'
 	pod 'SLObjectiveCRuntimeAdditions', '~> 1.1.2'
 	pod 'Mantle', '~> 1.4.1'
 	pod 'NSString+TIUtils', :git => 'git@github.com:thirdiron/NSString-TIUtils.git'
